@@ -10,13 +10,13 @@
 <body onload="init()">
     <main class="meme-editor flex space-between">
         <div class="canvas-container">
-            <canvas class="my-canvas" width="450" height="450"></canvas>
+            <canvas class="my-canvas" width="500" height="500"></canvas>
         </div>
         <div class="control-box flex direction-column space-between">
             <section class="section1">
                 <input type="text" class="line-txt" placeholder="Enter text here">
                 <button class="editBtn"></button>
-                <button class="editBtn"></button>
+                <button class="editBtn" onclick="onAddLine()"><img src="icons/add.png"></button>
                 <button class="editBtn"></button>
             </section>
             <section class="section2">
@@ -37,6 +37,10 @@
             </section>
         </div>
     </main>
+
+    <main class="image-gallery flex wrap"></main>
+
+    <script src="js/services/meme-gen-service.js"></script>
     <script src="js/meme-gen-controller.js"></script>
 </body>
 </html>

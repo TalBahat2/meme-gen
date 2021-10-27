@@ -1,9 +1,17 @@
-.canvas-container {
-    flex: 1;
+* {
+    box-sizing: border-box;
 }
 
-.control-box {
-    flex: 1;
+/* BASIC */
+
+body {
+    margin: 0;
+}
+
+button {
+    border: 0;
+    padding: 5px;
+    border-radius: 20%;
 }
 
 .editBtn {
@@ -16,8 +24,43 @@
     height: 40px;
 }
 
+button > img {
+    width: 100%;
+    height: 100%;
+}
+
+/* LAYOUT */
+
+
+
+/* COMPONENTS */
+
+/* meme editor */
+
+.canvas-container {
+    flex: 1;
+}
+
+.control-box {
+    flex: 1;
+}
+
+/* image gallery */
+
+.image-gallery > .img-container {
+    width: 100px;
+    height: 100px;
+}
+
+.img-container > img {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+}
 
 /* HELPERS */
+
+/* flex */
 
 .flex {
     display: flex;
@@ -29,4 +72,8 @@
 
 .flex.direction-column {
     flex-direction: column;
+}
+
+.wrap {
+    flex-wrap: wrap;
 }
