@@ -1,0 +1,24 @@
+global vars:
+    gKeywords = map of the used keywords.
+    gImgs = array of img objects.
+    gMeme = {
+        selectedImgId: num,
+        selectedLineIdx: num,
+        lines: [
+            {
+                txt: '',
+                size: num,
+                align: '',
+                color: ''
+            }, 
+            {
+                ...
+            }
+        ]
+    }
+
+img object {
+    id: num,
+    url: '',
+    keywords: ['', '', ...]
+}

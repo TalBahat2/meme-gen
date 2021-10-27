@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Document</title>
+</head>
+<body onload="init()">
+    <main class="meme-editor flex space-between">
+        <div class="canvas-container">
+            <canvas class="my-canvas" width="450" height="450"></canvas>
+        </div>
+        <div class="control-box flex direction-column space-between">
+            <section class="section1">
+                <input type="text" class="line-txt" placeholder="Enter text here">
+                <button class="editBtn"></button>
+                <button class="editBtn"></button>
+                <button class="editBtn"></button>
+            </section>
+            <section class="section2">
+                <button class="editBtn"></button>
+                <button class="editBtn"></button>
+                <button class="editBtn"></button>
+                <button class="editBtn"></button>
+                <button class="editBtn"></button>
+                <select>
+                    <option class="font" value="IMPACT">Impact</option>
+                </select>
+                <button class="editBtn"></button>
+                <button class="editBtn"></button>
+            </section>
+            <section class="section3">
+                <button class="shareBtn"></button>
+                <button class="shareBtn"></button>
+            </section>
+        </div>
+    </main>
+    <script src="js/meme-gen-controller.js"></script>
+</body>
+</html>
