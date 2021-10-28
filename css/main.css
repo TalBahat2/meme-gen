@@ -2,7 +2,18 @@
     box-sizing: border-box;
 }
 
+/* TYPOGRAPHY */
+
+@font-face {
+    font-family: montserrat-regular;
+    src: url(/fonts/montserrat/Montserrat-Regular.ttf);
+}
+
 /* BASIC */
+
+html {
+    font-family: montserrat-regular;
+}
 
 body {
     margin: 0;
@@ -34,6 +45,26 @@ button > img {
 
 
 /* COMPONENTS */
+
+/* HEADER */
+
+/* main-header */
+
+.main-header {
+    background-color: #FF7F00;
+}
+
+.nav-bar {
+    padding-inline-end: 10px;
+}
+
+.nav-bar > * {
+    padding: 10px
+}
+
+.nav-bar > :last-child {
+    border-inline-start: 1px #8A8A8A solid;
+}
 
 /* meme editor */
 
@@ -68,6 +99,14 @@ button > img {
 
 .flex.space-between {
     justify-content: space-between;
+}
+
+.flex.justify-center {
+    justify-content: center;
+}
+
+.flex.align-center {
+    align-items: center;
 }
 
 .flex.direction-column {
