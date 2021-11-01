@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,30 +8,37 @@
     <link rel="stylesheet" href="css/main.css">
     <title>Document</title>
 </head>
+
 <body onload="init()">
-    <header class="main-header flex space-between">
-        <div class="logo">logo</div>
-        <div class="nav-bar flex">
-            <div class="gallery">gallery</div>
-            <div class="about">about</div>
+    <header class="main-header">
+        <div class="header-elements main-layout flex space-between align-center">
+            <div class="logo">memegen</div>
+            <div class="nav-bar flex">
+                <div class="gallery" onclick="changeView('gallery')">gallery</div>
+                <div class="memes" onclick="changeView('memes')">memes</div>
+                <div class="about">about</div>
+            </div>
         </div>
     </header>
-    <main class="meme-editor flex space-between">
-        <div class="canvas-container">
-            <canvas class="my-canvas" width="500" height="500"></canvas>
+    <main class="meme-editor main-layout flex space-between hidden">
+        <div class="canvas-container flex space-around">
+            <canvas class="my-canvas" width="400" height="400"></canvas>
         </div>
-        <div class="control-box flex direction-column space-between">
+        <div class="control-box flex direction-column space-between align-center">
             <section class="section1">
-                <input type="text" class="line-txt" placeholder="Enter text here" onchange="onChangeText()">
+                <input type="text" class="line-txt" placeholder="Enter text here" oninput="onChangeText()">
                 <button class="editBtn" onclick="onMoveLine(-1)"><img src="icons/up-arrow.png"></button>
                 <button class="editBtn" onclick="onMoveLine(1)"><img src="icons/down-arrow.png"></button>
-                <button class="editBtn" onclick="onSwitchLinesFocus()"><img src="icons/up-and-down-opposite-double-arrows-side-by-side.png"></button>
+                <button class="editBtn" onclick="onSwitchLinesFocus()"><img
+                        src="icons/up-and-down-opposite-double-arrows-side-by-side.png"></button>
                 <button class="editBtn" onclick="onAddLine()"><img src="icons/add.png"></button>
-                <button class="editBtn"><img src="icons/trash.png"></button>
+                <button class="editBtn" onclick="onDeleteLine()"><img src="icons/trash.png"></button>
             </section>
             <section class="section2">
-                <button class="editBtn" onclick="onChangeLineFont(1)"><img src="icons/increase font - icon.png"></button>
-                <button class="editBtn" onclick="onChangeLineFont(-1)"><img src="icons/decrease font - icon.png"></button>
+                <button class="editBtn" onclick="onChangeLineFont(1)"><img
+                        src="icons/increase font - icon.png"></button>
+                <button class="editBtn" onclick="onChangeLineFont(-1)"><img
+                        src="icons/decrease font - icon.png"></button>
                 <button class="editBtn" onclick="onAlign('L')"><img src="icons/align-to-left.png"></button>
                 <button class="editBtn" onclick="onAlign('C')"><img src="icons/center-text-alignment.png"></button>
                 <button class="editBtn" onclick="onAlign('R')"><img src="icons/align-to-right.png"></button>
@@ -38,23 +46,37 @@
                     <option class="font" value="IMPACT">Impact</option>
                 </select>
                 <button class="editBtn"><img src="icons/text stroke.png"></button>
-                <button class="editBtn"><img src="icons/paint-board-and-brush.png"></button>
+                <button class="editBtn font-color">
+                    <img src="icons/paint-board-and-brush.png">
+                    <div>
+                        <!-- <input type="color" oninput="onChangeFontColor()"> -->
+                    </div>
+                </button>
+
             </section>
             <section class="section3">
-                <button class="shareBtn"></button>
-                <button class="shareBtn"></button>
+                <button class="shareBtn">share</button>
+                <button class="shareBtn"><a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg">download</a></button>
+                <button class="shareBtn">save</button>
             </section>
         </div>
     </main>
 
-    <main class="image-gallery flex wrap justify-center"></main>
+    <main class="image-gallery main-layout flex wrap justify-center"></main>
 
-    <footer class="main-footer flex direction-column align-center">
-        <div class="logo">logo</div>
-        <div class="rigths">rights</div>
+    <main class="saved-memes hidden"></main>
+
+    <footer class="main-footer">
+        <div class="footer-elements main-layout flex direction-column align-center">
+            <div class="logo">memegen</div>
+            <div class="rigths">all rights reserved 2021</div>
+        </div>
     </footer>
 
+    <script src="js/services/upload-service.js"></script>
+    <script src="js/services/storage-service.js"></script>
     <script src="js/services/meme-gen-service.js"></script>
     <script src="js/meme-gen-controller.js"></script>
 </body>
+
 </html>

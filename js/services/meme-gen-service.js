@@ -1,8 +1,12 @@
 'use strict'
 
 const gImgs = _createImgs();
+const KEY = 'memes';
 var gMeme = createMeme(2);
+var gMemes;
 var gFontDiff = 5;
+
+_createMemes();
 
 // ------------ get from model functions ------------
 
@@ -52,6 +56,27 @@ function getCurrLinePos() {
     return currLine.pos;
 }
 
+function getLines() {
+    return gMeme.lines;
+}
+
+function getLineFramePoss(lineIdx) {
+    const currLine = gMeme.lines[lineIdx];
+    gCtx.font = `${currLine.size}px IMPACT`
+    const textWidth = gCtx.measureText(currLine.txt).width;
+    const textHeight = (!!currLine.txt) ? gCtx.measureText(currLine.txt).actualBoundingBoxAscent + gCtx.measureText(currLine.txt).actualBoundingBoxDescent : 40;
+    const textPos = currLine.pos;
+    const x1 = gFramePadding;
+    const y1 = textPos.y - textHeight - gFramePadding;
+    const dx = gElCanvas.width - 2 * gFramePadding;
+    const dy = textHeight + 2 * gFramePadding;
+    return { x1, y1, dx, dy };
+}
+
+function getLinePos(lineIdx) {
+    return gMeme.lines[lineIdx].pos;
+}
+
 // ------------ check functions ------------
 
 function isLinesEmpty() {
@@ -66,7 +91,7 @@ function addLineToMeme(height) {
         size: 50,
         align: 'center',
         color: '#fff',
-        pos: { x: gElCanvas.width / 2, y: height }
+        pos: { x: gElCanvas.width / 2, y: height },
     }
     gMeme.lines.push(line);
 }
@@ -100,19 +125,34 @@ function changeAlign(align) {
     currLine.align = align;
 }
 
+function deleteLine() {
+    if (gMeme.lines.length === 1) return;
+    const currLineIdx = getCurrLineIdx();
+    gMeme.lines.splice(currLineIdx, 1);
+}
+
+function changeFontColor(color) {
+    const currLine = getCurrLine();
+    currLine.color = color;
+}
+
+function changeLinePos(lineIdx, pos) {
+    gMeme.lines[lineIdx].pos = pos;
+}
+
 // ------------ create functions ------------
 
-function createMeme(selectedImgId) {
+function createMeme(selectedImgId, txt='text here') {
     return {
         selectedImgId,
         selectedLineIdx: 0,
         lines: [
             {
-                txt: 'text here',
+                txt,
                 size: 50,
                 align: 'C',
                 color: '#fff',
-                pos: { x: 170, y: 60 }
+                pos: { x: 130, y: 60 },
             }
         ]
     }
@@ -121,6 +161,31 @@ function createMeme(selectedImgId) {
 function _createImgs() {
     return [
         { id: 1, url: 'meme-imgs/1.jpg', keywords: ['satisfaction'] },
-        { id: 2, url: 'meme-imgs/2.jpg', keywords: ['satisfaction'] }
+        { id: 2, url: 'meme-imgs/2.jpg', keywords: ['satisfaction'] },
+        { id: 3, url: 'meme-imgs/3.jpg', keywords: ['satisfaction'] },
+        { id: 4, url: 'meme-imgs/4.jpg', keywords: ['satisfaction'] },
+        { id: 5, url: 'meme-imgs/5.jpg', keywords: ['satisfaction'] },
+        { id: 6, url: 'meme-imgs/6.jpg', keywords: ['satisfaction'] },
+        { id: 7, url: 'meme-imgs/7.jpg', keywords: ['satisfaction'] },
+        { id: 8, url: 'meme-imgs/8.jpg', keywords: ['satisfaction'] },
+        { id: 9, url: 'meme-imgs/9.jpg', keywords: ['satisfaction'] },
+        { id: 10, url: 'meme-imgs/10.jpg', keywords: ['satisfaction'] },
+        { id: 11, url: 'meme-imgs/11.jpg', keywords: ['satisfaction'] },
+        { id: 12, url: 'meme-imgs/12.jpg', keywords: ['satisfaction'] },
     ]
+}
+
+function _createMemes() {
+    var memes = loadFromStorage(KEY)
+    if (!memes || !memes.length) {
+        memes = [];
+        memes.push(createMeme(1, 'example'));
+    }
+    console.log('memes',memes);
+    gMemes = memes;
+    _saveMemesToStorage();
+}
+
+function _saveMemesToStorage() {
+    saveToStorage(KEY, gMemes);
 }
